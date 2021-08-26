@@ -21,6 +21,17 @@ Item {
                 width: parent.width
                 height: 50
 
+                Rectangle {
+                    width: bgRec.width/2
+                    height: bgRec.height
+                    color: "#fff"
+                    Text {
+                        id: songList
+                        text: qsTr("Songs")
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                    }
+                }
             }
 
         }
