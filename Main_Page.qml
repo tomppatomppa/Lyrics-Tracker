@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
+import QtQuick.Controls.Material 2.3
 Item {
 
     width: parent.width
@@ -8,8 +9,6 @@ Item {
     Rectangle {
         id: bgRec
         anchors.fill: parent
-
-
         color: "#2C3E50"
 
         ListView {
@@ -20,24 +19,44 @@ Item {
                 id: headerListView
                 width: parent.width
                 height: 50
+            }
+            /****Menu Bar******/
+            Rectangle {
+                id: menuBar
+                anchors.top: parent.top
+                anchors.topMargin: 0
+                width: parent.width
+                height: 50
+                color: "#000"
 
-                Rectangle {
-                    width: bgRec.width/2
-                    height: bgRec.height
-                    color: "#fff"
-                    Text {
-                        id: songList
-                        text: qsTr("Songs")
-                        anchors.horizontalCenter: parent.horizontalCenter
+                RoundButton{
+                    id:roundBtn
+                    anchors.right: parent.right
+                    anchors.verticalCenter: menuBar.verticalCenter
 
+                    anchors.rightMargin: 5
+                    Material.background: Material.BlueGrey
+                    Menu_Icon {
+                        anchors.centerIn: parent
                     }
+                    onClicked:  {
+                        addSong_Drawer.open()
+
+                        console.log("Do something")
                 }
             }
+            }
+
 
         }
-
-
-
     }
-
+    AddSong_Drawer {
+        id: addSong_Drawer
+    }
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:0.125}
+}
+##^##*/

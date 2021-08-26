@@ -4,5 +4,7 @@
         <file>assets/feo_logo2.png</file>
         <file>Load_page.qml</file>
         <file>Main_Page.qml</file>
+        <file>Menu_Icon.qml</file>
+        <file>AddSong_Drawer.qml</file>
     </qresource>
 </RCC>

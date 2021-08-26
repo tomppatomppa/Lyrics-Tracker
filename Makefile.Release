@@ -99,8 +99,10 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_qml.cpp
 release/qrc_qml.cpp: qml.qrc \
 		C:/Qt/6.1.2/mingw81_64/bin/rcc.exe \
+		AddSong_Drawer.qml \
 		main.qml \
 		Main_Page.qml \
+		Menu_Icon.qml \
 		Load_page.qml \
 		assets/feo_logo2.png
 	C:\Qt\6.1.2\mingw81_64\bin\rcc.exe -name qml qml.qrc -o release\qrc_qml.cpp
