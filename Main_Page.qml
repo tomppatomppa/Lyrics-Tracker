@@ -19,18 +19,31 @@ Item {
                 id: headerListView
                 width: parent.width
                 height: 50
+
             }
+
             model: ListModel {
                 id: myListModel
             }
             delegate: MouseArea {
                 id: myDelegate
                 width: parent.width
-                height: 50
+                height: 30
+
                 onPressAndHold: {
                     listView.currentIndex = index
-                    myListModel.remove(listvView.currentIndex)
+
+                    //console.log(myListModel.get(listView.currentIndex).titleText)
+                    console.log(myListModel.get(listView.currentIndex).lyricText)
                 }
+                Rectangle {
+                    id: bgRectList
+                    height: parent.height
+                    width: parent.width
+                    color: index % 2 ? "green" : "blue"
+                    border.color: "#fff"
+                }
+
                 Label {
                     id: title
                     text: titleText
@@ -38,6 +51,15 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 20
                     color: "white"
+                }
+                Label {
+                    id: lyric
+                    text: lyricText
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.rightMargin: 20
+                    color: "white"
+                    visible: false
                 }
             }
 

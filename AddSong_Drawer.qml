@@ -75,15 +75,11 @@ Drawer {
             onClicked: {
                 if(titleInput.text != "" &&
                         songName.text != "") {
-                    myListModel.append({"titleText": songName.text})
-
-
+                    myListModel.append({"titleText": songName.text, "lyricText": titleInput.text})
                     titleInput.clear()
+                    songName.clear()
                     addSong_Drawer.close()
                 }
-
-                console.log(titleInput.selectionStart, titleInput.selectionEnd)
-
             }
         }
         TextField {
