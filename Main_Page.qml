@@ -39,9 +39,14 @@ Item {
                 //not working
                 onClicked: {
                     listView.currentIndex = index
+
+
                     //EditText_Drawer.aString === myListModel.get(listView.currentIndex).titleText
-                    console.log(myListModel.get(listView.currentIndex).titleText)
+                    console.log(listView.currentIndex)
+                    //console.log(myListModel.get(listView.currentIndex).lyricText)
                     addSong_Drawer.titleString = myListModel.get(listView.currentIndex).titleText
+                    addSong_Drawer.lyricString = myListModel.get(listView.currentIndex).lyricText
+                    addSong_Drawer.itemIndex = listView.currentIndex
                     addSong_Drawer.open()
                 }
 

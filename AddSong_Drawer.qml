@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 
 Drawer {
     property real menuBarHeight: 50
+    property int itemIndex: 0
     property string titleString: ""
     property string lyricString: ""
     id: addSong_Drawer
@@ -90,12 +91,13 @@ Drawer {
             anchors.verticalCenter: parent.verticalCenter
 
 
-            placeholderText: if(titleString !== "") {
-                      songName.text = titleString
+            placeholderText: if(titleString != "")
+                             {
+                                songName.text = titleString
                              }
-                             else {
-                                 placeholderText = "Title"
-                             }
+//                             else {
+//                                 placeholderText = "Title"
+//                             }
 
         }
 
@@ -110,7 +112,11 @@ Drawer {
             id: titleInput
             width: parent.width
             horizontalAlignment: TextEdit.AlignHCenter
-            placeholderText: "Place your text"
+            placeholderText: if (lyricString != "")
+                             {
+
+                                 titleInput.text = lyricString
+                             }
             textMargin: 50
             font.pointSize: 20
             wrapMode: TextArea.Wrap
