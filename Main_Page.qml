@@ -20,6 +20,27 @@ Item {
                 width: parent.width
                 height: 50
             }
+            model: ListModel {
+                id: myListModel
+            }
+            delegate: MouseArea {
+                id: myDelegate
+                width: parent.width
+                height: 50
+                onPressAndHold: {
+                    listView.currentIndex = index
+                    myListModel.remove(listvView.currentIndex)
+                }
+                Label {
+                    id: title
+                    text: titleText
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.leftMargin: 20
+                    color: "white"
+                }
+            }
+
             /****Menu Bar******/
             Rectangle {
                 id: menuBar

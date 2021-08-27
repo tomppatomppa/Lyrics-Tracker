@@ -73,10 +73,24 @@ Drawer {
             anchors.verticalCenter: parent.verticalCenter
             text: "Save"
             onClicked: {
+                if(titleInput.text != "" &&
+                        songName.text != "") {
+                    myListModel.append({"titleText": songName.text})
+
+
+                    titleInput.clear()
+                    addSong_Drawer.close()
+                }
 
                 console.log(titleInput.selectionStart, titleInput.selectionEnd)
 
             }
+        }
+        TextField {
+            id: songName
+            anchors.left: deleteBtn.right
+            anchors.verticalCenter: parent.verticalCenter
+            placeholderText: ("Title")
         }
 
     }
@@ -92,10 +106,12 @@ Drawer {
             horizontalAlignment: TextEdit.AlignHCenter
             placeholderText: "Place your text"
             textMargin: 50
+            font.pointSize: 20
             wrapMode: TextArea.Wrap
             selectByMouse : true
 
         }
+
 
     }
 
