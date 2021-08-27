@@ -3,6 +3,8 @@ import QtQuick.Controls 2.5
 
 Drawer {
     property real menuBarHeight: 50
+    property string titleString: ""
+    property string lyricString: ""
     id: addSong_Drawer
     width: parent.width
     height: parent.height-menuBarHeight
@@ -86,7 +88,15 @@ Drawer {
             id: songName
             anchors.left: deleteBtn.right
             anchors.verticalCenter: parent.verticalCenter
-            placeholderText: ("Title")
+
+
+            placeholderText: if(titleString !== "") {
+                      songName.text = titleString
+                             }
+                             else {
+                                 placeholderText = "Title"
+                             }
+
         }
 
     }

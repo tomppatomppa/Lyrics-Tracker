@@ -33,9 +33,18 @@ Item {
                 onPressAndHold: {
                     listView.currentIndex = index
 
-                    //console.log(myListModel.get(listView.currentIndex).titleText)
+
                     console.log(myListModel.get(listView.currentIndex).lyricText)
                 }
+                //not working
+                onClicked: {
+                    listView.currentIndex = index
+                    //EditText_Drawer.aString === myListModel.get(listView.currentIndex).titleText
+                    console.log(myListModel.get(listView.currentIndex).titleText)
+                    addSong_Drawer.titleString = myListModel.get(listView.currentIndex).titleText
+                    addSong_Drawer.open()
+                }
+
                 Rectangle {
                     id: bgRectList
                     height: parent.height
@@ -85,7 +94,7 @@ Item {
                     onClicked:  {
                         addSong_Drawer.open()
 
-                        console.log("Do something")
+                        console.log("Open drawer")
                 }
             }
             }
@@ -95,6 +104,12 @@ Item {
     }
     AddSong_Drawer {
         id: addSong_Drawer
+
+    }
+    EditText_Drawer {
+        id: editText_Drawer
+
+
     }
 }
 
