@@ -104,7 +104,6 @@ release/qrc_qml.cpp: qml.qrc \
 		Main_Page.qml \
 		Menu_Icon.qml \
 		Load_page.qml \
-		EditText_Drawer.qml \
 		javascript.js \
 		assets/feo_logo2.png
 	C:\Qt\6.1.2\mingw81_64\bin\rcc.exe -name qml qml.qrc -o release\qrc_qml.cpp

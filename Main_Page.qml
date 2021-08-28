@@ -39,26 +39,14 @@ Item {
                     if(lyrics_data) {
                         addSong_Drawer.lyricString = lyrics_data
                     }
-
-                    //myListModel.set(listView.currentIndex, {"titleText":"test", "lyricText": "random"})
-                    //console.log(myListModel.get(listView.currentIndex).lyricText)
                     addSong_Drawer.open()
                 }
 
-                //not working
                 onClicked: {
                     listView.currentIndex = index
-                    var lyrics_data = Myscript.readData(myListModel.get(listView.currentIndex).titleText)
+
                     var title_data = myListModel.get(listView.currentIndex).titleText
-                    console.log("Open Existing Item")
-
                     addSong_Drawer.open()
-                    //EditText_Drawer.aString === myListModel.get(listView.currentIndex).titleText
-
-                    //console.log(myListModel.get(listView.currentIndex).lyricText)
-//                    addSong_Drawer.titleString = myListModel.get(listView.currentIndex).titleText
-//                    addSong_Drawer.lyricString = myListModel.get(listView.currentIndex).lyricText
-//                    addSong_Drawer.itemIndex = listView.currentIndex
 
                 }
 
@@ -78,46 +66,9 @@ Item {
                     anchors.leftMargin: 20
                     color: "white"
                 }
-                Label {
-                    id: lyric
-                    text: lyricText
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.rightMargin: 20
-                    color: "white"
-                    visible: false
-                }
-
-
-
-            }
-            RoundButton {
-                id:addData
-                text: databutton
-
-                anchors.centerIn: parent
-                onClicked: {
-                    myListModel.clear()
-                    console.log("component")
-                    var data_container = [Myscript.readAllData()]
-                    var data_size = data_container.length
-                    if(!data_size) {
-                        console.log("empty database")
-                        return
-                    }
-                    else {
-                        for(var i = 0; i < data_size;i++ ) {
-                            console.log("Add do listview "+data_container[i])
-                            myListModel.append({"titleText": data_container[i], "lyricText": "default" })
-                        }
-                    }
-
-                }
             }
 
-            Component.onCompleted:     {
 
-            }
             /****Menu Bar******/
             Rectangle {
                 id: menuBar
@@ -139,31 +90,36 @@ Item {
                     }
                     onClicked:  {
                         addSong_Drawer.open()
-
                         console.log("Open drawer button")
                 }
             }
+                RoundButton {
+                    id:addData
+                    text: databutton
+
+                    anchors.centerIn: parent
+                    onClicked: {
+                        myListModel.clear()
+                        console.log("component")
+                        var data_container = [Myscript.readAllData()]
+                        var data_size = data_container.length
+                        if(!data_size) {
+                            console.log("empty database")
+                            return
+                        }
+                        else {
+                            for(var i = 0; i < data_size;i++ ) {
+                                console.log("Add do listview "+data_container[i])
+                                myListModel.append({"titleText": data_container[i], "lyricText": "default" })
+                            }
+                        }
+                    }
+                }
             }
-
-
         }
     }
-
     AddSong_Drawer {
         id: addSong_Drawer
-
     }
-    EditText_Drawer {
-        id: editText_Drawer
-
-
-    }
-
-
 }
 
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:0.125}
-}
-##^##*/

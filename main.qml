@@ -20,7 +20,7 @@ ApplicationWindow {
        }
        Component.onCompleted: {
 
-           Myscript.initDatabase()
+           //Myscript.initDatabase()
            contentFrame.replace("qrc:/Main_Page.qml")
 
        }
