@@ -81,7 +81,7 @@ Drawer {
             anchors.verticalCenter: parent.verticalCenter
             text: "Save"
             onClicked: {
-                findInDrawer(itemIndex, "random")
+                //findInDrawer(itemIndex, "random")
                 if(titleInput.text != "" &&
                         songName.text != "") {
                         Myscript.storeData(songName.text, titleInput.text)
@@ -93,7 +93,7 @@ Drawer {
 //                      }
 
 //                    Myscript.storeData(songName.text, titleInput.text)
-                        myListModel.append({"titleText": songName.text, "lyricText": titleInput.text})
+                      //myListModel.append({"titleText": songName.text, "lyricText": titleInput.text})
                     titleInput.clear()
                     songName.clear()
                     addSong_Drawer.close()

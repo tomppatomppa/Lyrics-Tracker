@@ -21,13 +21,11 @@ ApplicationWindow {
        Component.onCompleted: {
 
            Myscript.initDatabase()
-           //Myscript.readData()
-           console.log("Load completed")
            contentFrame.replace("qrc:/Main_Page.qml")
 
        }
        Component.onDestruction: {
-           //Myscript.storeData()
+
 
        }
 

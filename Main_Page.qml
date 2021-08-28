@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.3
+import QtQuick.LocalStorage 2.12
 import "javascript.js" as Myscript
 Item {
 
@@ -43,6 +44,7 @@ Item {
                     //console.log(myListModel.get(listView.currentIndex).lyricText)
                     addSong_Drawer.open()
                 }
+
                 //not working
                 onClicked: {
                     listView.currentIndex = index
@@ -83,10 +85,39 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.rightMargin: 20
                     color: "white"
-                    //visible: false
+                    visible: false
+                }
+
+
+
+            }
+            RoundButton {
+                id:addData
+                text: databutton
+
+                anchors.centerIn: parent
+                onClicked: {
+                    myListModel.clear()
+                    console.log("component")
+                    var data_container = [Myscript.readAllData()]
+                    var data_size = data_container.length
+                    if(!data_size) {
+                        console.log("empty database")
+                        return
+                    }
+                    else {
+                        for(var i = 0; i < data_size;i++ ) {
+                            console.log("Add do listview "+data_container[i])
+                            myListModel.append({"titleText": data_container[i], "lyricText": "default" })
+                        }
+                    }
+
                 }
             }
 
+            Component.onCompleted:     {
+
+            }
             /****Menu Bar******/
             Rectangle {
                 id: menuBar
@@ -117,6 +148,7 @@ Item {
 
         }
     }
+
     AddSong_Drawer {
         id: addSong_Drawer
 
@@ -126,6 +158,7 @@ Item {
 
 
     }
+
 
 }
 

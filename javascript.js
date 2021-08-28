@@ -36,6 +36,33 @@ function readData(title) {
 
 
 }
+function readAllData() {
+    var db = getDatabase()
+    var rs = ""
+    //print('readData()')
+    if(!db) { return; }
+    db.transaction( function(tx) {
+        //print('... read crazy object')
+        rs = tx.executeSql('SELECT * FROM data;');
+
+    });
+    var name_data = []
+    if(rs.rows.length > 0) {
+        for(var name = 0; name < rs.rows.length; name++) {
+            name_data += rs.rows.item(name).name
+            console.log("exists " + rs.rows.item(name).name)
+        }
+        return name_data
+
+
+    }
+    else {
+        console.log("empty database")
+    }
+
+
+
+}
 function storeData(title, lyrics) {
     var db = getDatabase()
     if(!db) { return; }
@@ -47,7 +74,7 @@ function storeData(title, lyrics) {
             print('... title exists, update it')
             result = tx.executeSql('UPDATE data set name=? where value=?;'[title], [lyrics]);
         } else { // use insert
-            print('... title does not exists, create it')
+            print('... title does not exists, create it'+ title)
             result = tx.executeSql('INSERT INTO data VALUES (?,?)', [title, lyrics]);
         }
     });
