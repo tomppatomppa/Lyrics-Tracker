@@ -24,93 +24,46 @@ Drawer {
         anchors.right: parent.right
 
         color: "red"
-        anchors.topMargin: 20
+
         RoundButton {
             id: pasteBtn
             anchors.left: parent.TopLeft
             anchors.horizontalCenter: parent.horizontalCenter
-
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.topMargin: 50
             text: "Paste"
             onClicked: {
                 console.log("paste")
                 //titleInput.append(titleInput.paste())
             }
         }
-        //not working
-//        RoundButton {
-//            id: copyBtn
-//            anchors.left: pasteBtn.right
-//            anchors.verticalCenter: parent.verticalCenter
-//            property string test: ""
-//            text: "Copy"
-//            onClicked: {
 
-//                test += titleInput.copy()
-//                console.log(titleInput.copy())
+        RoundButton {
+            id: saveBtn
+            anchors.top: pasteBtn.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Save"
+            onClicked: {
+                //findInDrawer(itemIndex, "random")
+                if(titleInput.text != "") {
+                        Myscript.storeData(songName.text, titleInput.text)
+                    titleInput.clear()
+                    lyricInput.clear()
+                    addSong_Drawer.close()
 
-//            }
-//        }
-//        //not working
-//        RoundButton {
-//            id: selectAllBtn
-//            anchors.left: copyBtn.right
-//            anchors.verticalCenter: parent.verticalCenter
-//            property string test: ""
-//            text: "Save existing"
-//            onClicked: {
-//                //Myscript.readData(songName.text)
+                }
+                else {
+                    console.log("Enter title")
+                }
 
-//                console.log(titleString + " Title here")
-//                myListModel.set(itemIndex, {"titleText": songName.text})
-//                titleInput.clear()
-//                songName.clear()
-//                addSong_Drawer.close()
-//            }
-//        }
-//        RoundButton {
-//            id: deleteBtn
-//            anchors.left: selectAllBtn.right
-//            anchors.verticalCenter: parent.verticalCenter
-//            text: "Delete"
-//            onClicked: {
+            }
 
-//                titleInput.cut()
-//            }
-//        }
-//        RoundButton {
-//            id: saveBtn
-//            anchors.right: parent.right
-//            anchors.verticalCenter: parent.verticalCenter
-//            text: "Save"
-//            onClicked: {
-//                //findInDrawer(itemIndex, "random")
-//                if(titleInput.text != "" &&
-//                        songName.text != "") {
-//                        Myscript.storeData(songName.text, titleInput.text)
-////                      if(Myscript.readData(titleInput)) {
-////                          console.log("Existing value")
-////                      }
-////                      else {
-////                          console.log("new title")
-////                      }
-
-////                    Myscript.storeData(songName.text, titleInput.text)
-//                      //myListModel.append({"titleText": songName.text, "lyricText": titleInput.text})
-//                    titleInput.clear()
-//                    songName.clear()
-//                    addSong_Drawer.close()
-//                }
-//                else {
-//                    console.log("Enter title")
-//                }
-
-
-//            }
-//        }
+        }
 
 
 
     }
+    /***title Text***/
     Rectangle {
         id: titleRect
         width: parent.width-50
@@ -118,43 +71,29 @@ Drawer {
         anchors.top: parent.top
         color: "blue"
         TextField {
-            id: titleText
+            id: titleInput
             maximumLength: 30
-            anchors.left: deleteBtn.right
+
             anchors.centerIn: parent.horizontalCenter
             placeholderText: "title"
         }
     }
+    //Where lyric text goes
+    ScrollView {
+        id: scrollView
+        anchors.top: titleRect.bottom
+        anchors.right: btnContainer.left
+        width: parent.width
+        height: parent.height
+        TextArea {
+            id: lyricInput
+            width: parent.width
+            horizontalAlignment: TextEdit.AlignHCenter
+            textMargin: 50
+            font.pointSize: 20
+            wrapMode: TextArea.Wrap
+            selectByMouse : true
+        }
+    }
 }
 
-//    ScrollView {
-//        id: scrollView
-//        width: parent.width
-//        height: parent.height-menuBarHeight
-//        anchors.top: btnContainer.bottom
-//        TextArea {
-//            id: titleInput
-//            width: parent.width
-//            horizontalAlignment: TextEdit.AlignHCenter
-//            placeholderText: if (lyricString != "")
-//                             {
-
-//                                 titleInput.text = lyricString
-//                             }
-//                             else {
-//                                 placeholderText = "Add lyrics"
-//                             }
-//            text: lyricString
-//            textMargin: 50
-//            font.pointSize: 20
-//            wrapMode: TextArea.Wrap
-//            selectByMouse : true
-
-//        }
-
-
-//    }
-
-
-
-//}

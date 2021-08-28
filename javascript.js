@@ -11,7 +11,7 @@ function initDatabase() {
     db = LocalStorage.openDatabaseSync("local", "1.0", "Lyric Data", 100000);
     db.transaction( function(tx) {
         print('... create table')
-        tx.executeSql('CREATE TABLE IF NOT EXISTS data(name TEXT, value TEXT)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS data(title TEXT, lyrics TEXT)');
     });
 }
 
@@ -21,16 +21,17 @@ function readData(title) {
     print('readData()')
     if(!db) { return; }
     db.transaction( function(tx) {
-        print('... read crazy object')
+        print('read '+title)
         rs = tx.executeSql('SELECT value FROM data WHERE name=?;', [title]);
 
     });
 
     if(rs.rows.length > 0) {
-        console.log("exists " + rs.rows.item(0).value)
-        return rs.rows.item(0).value
+        console.log(title +" exists ")
+        return rs.rows.item(0).lyrics
     }
     else {
+        console.log(title +" does not exist ")
         return false
     }
 

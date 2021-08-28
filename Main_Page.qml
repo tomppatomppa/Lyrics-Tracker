@@ -30,17 +30,17 @@ Item {
                 width: parent.width
                 height: 30
 
-                onPressAndHold: {
-                    listView.currentIndex = index
-                    addSong_Drawer.itemIndex = listView.currentIndex
-                    var title_data = myListModel.get(listView.currentIndex).titleText
-                    var lyrics_data = Myscript.readData(title_data)
-                    addSong_Drawer.titleString = title_data
-                    if(lyrics_data) {
-                        addSong_Drawer.lyricString = lyrics_data
-                    }
-                    addSong_Drawer.open()
-                }
+//                onPressAndHold: {
+//                    listView.currentIndex = index
+//                    addSong_Drawer.itemIndex = listView.currentIndex
+//                    var title_data = myListModel.get(listView.currentIndex).titleText
+//                    var lyrics_data = Myscript.readData(title_data)
+//                    addSong_Drawer.titleString = title_data
+//                    if(lyrics_data) {
+//                        addSong_Drawer.lyricString = lyrics_data
+//                    }
+//                    addSong_Drawer.open()
+//                }
 
                 onClicked: {
                     listView.currentIndex = index
@@ -93,28 +93,28 @@ Item {
                         console.log("Open drawer button")
                 }
             }
-                RoundButton {
-                    id:addData
-                    text: databutton
+//                RoundButton {
+//                    id:addData
+//                    text: databutton
 
-                    anchors.centerIn: parent
-                    onClicked: {
-                        myListModel.clear()
-                        console.log("component")
-                        var data_container = [Myscript.readAllData()]
-                        var data_size = data_container.length
-                        if(!data_size) {
-                            console.log("empty database")
-                            return
-                        }
-                        else {
-                            for(var i = 0; i < data_size;i++ ) {
-                                console.log("Add do listview "+data_container[i])
-                                myListModel.append({"titleText": data_container[i], "lyricText": "default" })
-                            }
-                        }
-                    }
-                }
+//                    anchors.centerIn: parent
+//                    onClicked: {
+//                        myListModel.clear()
+//                        console.log("component")
+//                        var data_container = [Myscript.readAllData()]
+//                        var data_size = data_container.length
+//                        if(!data_size) {
+//                            console.log("empty database")
+//                            return
+//                        }
+//                        else {
+//                            for(var i = 0; i < data_size;i++ ) {
+//                                console.log("Add do listview "+data_container[i])
+//                                myListModel.append({"titleText": data_container[i], "lyricText": "default" })
+//                            }
+//                        }
+//                    }
+//                }
             }
         }
     }

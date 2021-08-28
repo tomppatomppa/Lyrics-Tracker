@@ -18,6 +18,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-    qDebug() << engine.offlineStoragePath();
+    //qDebug() << engine.offlineStoragePath();
     return app.exec();
 }
