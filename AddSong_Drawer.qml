@@ -1,11 +1,13 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
-
+import QtQuick.LocalStorage 2.12
+import "javascript.js" as Myscript
 Drawer {
     property real menuBarHeight: 50
     property int itemIndex: 0
     property string titleString: ""
     property string lyricString: ""
+
     id: addSong_Drawer
     width: parent.width
     height: parent.height-menuBarHeight
@@ -52,12 +54,15 @@ Drawer {
             anchors.left: copyBtn.right
             anchors.verticalCenter: parent.verticalCenter
             property string test: ""
-            text: "Select All"
+            text: "Save existing"
             onClicked: {
-                titleInput.selectAll()
-                test += titleInput.text
-                console.log("select all")
+                //Myscript.readData(songName.text)
 
+                console.log(titleString + " Title here")
+                myListModel.set(itemIndex, {"titleText": songName.text})
+                titleInput.clear()
+                songName.clear()
+                addSong_Drawer.close()
             }
         }
         RoundButton {
@@ -76,25 +81,40 @@ Drawer {
             anchors.verticalCenter: parent.verticalCenter
             text: "Save"
             onClicked: {
+                findInDrawer(itemIndex, "random")
                 if(titleInput.text != "" &&
                         songName.text != "") {
-                    myListModel.append({"titleText": songName.text, "lyricText": titleInput.text})
+                        Myscript.storeData(songName.text, titleInput.text)
+//                      if(Myscript.readData(titleInput)) {
+//                          console.log("Existing value")
+//                      }
+//                      else {
+//                          console.log("new title")
+//                      }
+
+//                    Myscript.storeData(songName.text, titleInput.text)
+                        myListModel.append({"titleText": songName.text, "lyricText": titleInput.text})
                     titleInput.clear()
                     songName.clear()
                     addSong_Drawer.close()
                 }
+                else {
+                    console.log("Enter title")
+                }
+
+
             }
         }
         TextField {
             id: songName
             anchors.left: deleteBtn.right
             anchors.verticalCenter: parent.verticalCenter
+            text: titleString
 
-
-            placeholderText: if(titleString != "")
-                             {
-                                songName.text = titleString
-                             }
+//            placeholderText: if(titleString != "")
+//                             {
+//                                 songName.text = titleString
+//                             }
 //                             else {
 //                                 placeholderText = "Title"
 //                             }
@@ -112,11 +132,15 @@ Drawer {
             id: titleInput
             width: parent.width
             horizontalAlignment: TextEdit.AlignHCenter
-            placeholderText: if (lyricString != "")
-                             {
+//            placeholderText: if (lyricString != "")
+//                             {
 
-                                 titleInput.text = lyricString
-                             }
+//                                 titleInput.text = lyricString
+//                             }
+//                             else {
+//                                 placeholderText = "Add lyrics"
+//                             }
+            text: lyricString
             textMargin: 50
             font.pointSize: 20
             wrapMode: TextArea.Wrap
@@ -126,9 +150,28 @@ Drawer {
 
 
     }
+    function loadlyrics(){
 
+    }
 
+    function findInDrawer(index, title) {
+        if(myListModel.count < 1) {
+            console.log("Empty View")
+            return false
+        }
 
+        for(var i = 0; i < myListModel.count; i++) {
+            if (myListModel.index(i, 0) === title) {
+                console.log("found duplicate")
+                myListModel.insert({"titleText": songName.text, "lyricText": titleInput.text})
+                return true
+
+            }
+            return false
+
+        }
+
+    }
 
 }
 //TextArea.flickable: TextArea {

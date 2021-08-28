@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.3
+import "javascript.js" as Myscript
 Item {
 
     width: parent.width
@@ -19,9 +20,7 @@ Item {
                 id: headerListView
                 width: parent.width
                 height: 50
-
             }
-
             model: ListModel {
                 id: myListModel
             }
@@ -32,22 +31,33 @@ Item {
 
                 onPressAndHold: {
                     listView.currentIndex = index
+                    addSong_Drawer.itemIndex = listView.currentIndex
+                    var title_data = myListModel.get(listView.currentIndex).titleText
+                    var lyrics_data = Myscript.readData(title_data)
+                    addSong_Drawer.titleString = title_data
+                    if(lyrics_data) {
+                        addSong_Drawer.lyricString = lyrics_data
+                    }
 
-
-                    console.log(myListModel.get(listView.currentIndex).lyricText)
+                    //myListModel.set(listView.currentIndex, {"titleText":"test", "lyricText": "random"})
+                    //console.log(myListModel.get(listView.currentIndex).lyricText)
+                    addSong_Drawer.open()
                 }
                 //not working
                 onClicked: {
                     listView.currentIndex = index
+                    var lyrics_data = Myscript.readData(myListModel.get(listView.currentIndex).titleText)
+                    var title_data = myListModel.get(listView.currentIndex).titleText
+                    console.log("Open Existing Item")
 
-
-                    //EditText_Drawer.aString === myListModel.get(listView.currentIndex).titleText
-                    console.log(listView.currentIndex)
-                    //console.log(myListModel.get(listView.currentIndex).lyricText)
-                    addSong_Drawer.titleString = myListModel.get(listView.currentIndex).titleText
-                    addSong_Drawer.lyricString = myListModel.get(listView.currentIndex).lyricText
-                    addSong_Drawer.itemIndex = listView.currentIndex
                     addSong_Drawer.open()
+                    //EditText_Drawer.aString === myListModel.get(listView.currentIndex).titleText
+
+                    //console.log(myListModel.get(listView.currentIndex).lyricText)
+//                    addSong_Drawer.titleString = myListModel.get(listView.currentIndex).titleText
+//                    addSong_Drawer.lyricString = myListModel.get(listView.currentIndex).lyricText
+//                    addSong_Drawer.itemIndex = listView.currentIndex
+
                 }
 
                 Rectangle {
@@ -73,7 +83,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.rightMargin: 20
                     color: "white"
-                    visible: false
+                    //visible: false
                 }
             }
 
@@ -99,7 +109,7 @@ Item {
                     onClicked:  {
                         addSong_Drawer.open()
 
-                        console.log("Open drawer")
+                        console.log("Open drawer button")
                 }
             }
             }
@@ -116,6 +126,7 @@ Item {
 
 
     }
+
 }
 
 /*##^##

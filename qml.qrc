@@ -7,5 +7,6 @@
         <file>Menu_Icon.qml</file>
         <file>AddSong_Drawer.qml</file>
         <file>EditText_Drawer.qml</file>
+        <file>javascript.js</file>
     </qresource>
 </RCC>
