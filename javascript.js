@@ -18,14 +18,29 @@ function initDatabase() {
         console.log("Error creating database")
     };
 }
+//Implement check if exists already
 function dbInsert(titleData, LyricData) {
     var db = getDatabase()
     var rowid = 0;
+    var rx = ""
     db.transaction(function(tx) {
-        tx.executeSql('INSERT INTO song_data VALUES(?,?)', [titleData, LyricData])
-    var result = tx.executeSql('SELECT last_insert_rowid()')
-    rowid = result.insertId
-    })
+        rx = tx.executeSql('SELECT param_title FROM song_data WHERE param_title=?', [titleData])
+
+        if(rx.rows.length > 0) {
+            console.log("title exists")
+            tx.executeSql('UPDATE song_data SET param_title=? WHERE param_title=?;', [titleData, titleData])
+            tx.executeSql('UPDATE song_data SET param_lyrics=? WHERE param_title=?;', [LyricData, titleData])
+        }
+        else {
+            console.log("new title")
+             tx.executeSql('INSERT INTO song_data VALUES(?,?)', [titleData, LyricData])
+        }
+
+    });
+
+
+//    var result = tx.executeSql('SELECT last_insert_rowid()')
+//    rowid = result.insertId
     return rowid
 }
 
@@ -93,6 +108,8 @@ function readAllData() {
 
 
 }
+
+
 function storeData(title, lyrics) {
     var db = getDatabase()
     if(!db) { return; }

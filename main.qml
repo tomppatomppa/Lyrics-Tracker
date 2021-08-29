@@ -21,8 +21,8 @@ ApplicationWindow {
        Component.onCompleted: {
 
            Myscript.initDatabase()
-//           Myscript.dbInsert("I want it that way", "Lorem Ipsum")
-//           Myscript.dbInsert("Dont stop me now", "Lorum Ipsum")
+           Myscript.dbInsert("I want it that way", "Lorem Ipsum")
+           Myscript.dbInsert("Dont stop me now", "Lorum Ipsum")
 //           Myscript.dbInsert("Baby one more time", "Random lyrais")
 
 
