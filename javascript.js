@@ -11,7 +11,7 @@ function initDatabase() {
     db = LocalStorage.openDatabaseSync("local", "1.0", "Lyric Data", 100000);
     db.transaction( function(tx) {
         print('... create table')
-        tx.executeSql('CREATE TABLE IF NOT EXISTS data(title TEXT, lyrics TEXT)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS data(param_title TEXT, param_lyrics TEXT)');
     });
 }
 
@@ -22,13 +22,13 @@ function readData(title) {
     if(!db) { return; }
     db.transaction( function(tx) {
         print('read '+title)
-        rs = tx.executeSql('SELECT value FROM data WHERE name=?;', [title]);
+        rs = tx.executeSql('SELECT param_title FROM data WHERE param_title=?;', [title]);
 
     });
 
     if(rs.rows.length > 0) {
         console.log(title +" exists ")
-        return rs.rows.item(0).lyrics
+        return rs.rows.item(0).param_title
     }
     else {
         console.log(title +" does not exist ")
@@ -43,15 +43,15 @@ function readAllData() {
     //print('readData()')
     if(!db) { return; }
     db.transaction( function(tx) {
-        //print('... read crazy object')
+
         rs = tx.executeSql('SELECT * FROM data;');
 
     });
     var name_data = []
     if(rs.rows.length > 0) {
         for(var name = 0; name < rs.rows.length; name++) {
-            name_data += rs.rows.item(name).name
-            console.log("exists " + rs.rows.item(name).name)
+            name_data.push(rs.rows.item(name).param_title)
+            console.log("exists " + rs.rows.item(name).param_title)
         }
         return name_data
 
@@ -68,15 +68,14 @@ function storeData(title, lyrics) {
     var db = getDatabase()
     if(!db) { return; }
     db.transaction( function(tx) {
-        var result = tx.executeSql('SELECT * from data where name = "local"');
-        // prepare object to be stored as JSON
-        //var obj = { x: title.x, y: title.y };
+        var result = tx.executeSql('SELECT param_title FROM data WHERE param_title=?;', [title]);
         if(result.rows.length === 1) {// use update
-            print('... title exists, update it')
-            result = tx.executeSql('UPDATE data set name=? where value=?;'[title], [lyrics]);
+            print('... title exists, update it' + title)
+            result = tx.executeSql('UPDATE data SET param_title=?;', [title]);
+
         } else { // use insert
             print('... title does not exists, create it'+ title)
-            result = tx.executeSql('INSERT INTO data VALUES (?,?)', [title, lyrics]);
+            result = tx.executeSql('INSERT INTO data (param_title, param_lyrics) VALUES (?,?);', [title, lyrics]);
         }
     });
 }

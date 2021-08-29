@@ -67,6 +67,14 @@ Item {
                     color: "white"
                 }
             }
+            Component.onCompleted: {
+                var title_data = Myscript.readAllData()
+                for(var i=0; i<title_data.length; i++) {
+                    console.log("add "+ title_data[i])
+                    myListModel.append({"titleText": title_data[i] })
+                }
+
+            }
 
 
             /****Menu Bar******/
@@ -89,6 +97,7 @@ Item {
                         anchors.centerIn: parent
                     }
                     onClicked:  {
+
                         addSong_Drawer.open()
                         console.log("Open drawer button")
                 }
@@ -118,6 +127,9 @@ Item {
             }
         }
     }
+
+
+
     AddSong_Drawer {
         id: addSong_Drawer
     }
