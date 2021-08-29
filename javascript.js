@@ -7,14 +7,43 @@ function getDatabase() {
 }
 
 function initDatabase() {
-    print('initDatabase()')
+
     db = LocalStorage.openDatabaseSync("local", "1.0", "Lyric Data", 100000);
-    db.transaction( function(tx) {
-        print('... create table')
-        tx.executeSql('CREATE TABLE IF NOT EXISTS data(param_title TEXT, param_lyrics TEXT)');
-    });
+    try {
+            db.transaction( function(tx) {
+            print('... create table')
+            tx.executeSql('CREATE TABLE IF NOT EXISTS song_data(param_title TEXT, param_lyrics TEXT)');
+        })
+    }catch(err) {
+        console.log("Error creating database")
+    };
+}
+function dbInsert(titleData, LyricData) {
+    var db = getDatabase()
+    var rowid = 0;
+    db.transaction(function(tx) {
+        tx.executeSql('INSERT INTO song_data VALUES(?,?)', [titleData, LyricData])
+    var result = tx.executeSql('SELECT last_insert_rowid()')
+    rowid = result.insertId
+    })
+    return rowid
 }
 
+function dbReadAll()
+{
+    var db = getDatabase()
+    var songlist_data = []
+    db.transaction(function (tx) {
+        var results = tx.executeSql(
+                    'SELECT param_title,param_lyrics FROM song_data')
+        for (var i = 0; i < results.rows.length; i++) {
+            songlist_data.push(results.rows.item(i).param_title)
+            console.log(results.rows.item(i).param_title," : ",
+                        results.rows.item(i).param_lyrics)
+        }
+    })
+    return songlist_data
+}
 function readData(title) {
     var db = getDatabase()
     var rs = ""

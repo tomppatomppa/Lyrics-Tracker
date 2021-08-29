@@ -21,9 +21,11 @@ ApplicationWindow {
        Component.onCompleted: {
 
            Myscript.initDatabase()
-           Myscript.storeData("Dont stop me now", "Lorum Ipsum")
-           Myscript.storeData("I want it that way", "asdasd")
-           //Myscript.readData("Dont stop me now")
+//           Myscript.dbInsert("I want it that way", "Lorem Ipsum")
+//           Myscript.dbInsert("Dont stop me now", "Lorum Ipsum")
+//           Myscript.dbInsert("Baby one more time", "Random lyrais")
+
+
            contentFrame.replace("qrc:/Main_Page.qml")
 
        }

@@ -68,10 +68,9 @@ Item {
                 }
             }
             Component.onCompleted: {
-                var title_data = Myscript.readAllData()
-                for(var i=0; i<title_data.length; i++) {
-                    console.log("add "+ title_data[i])
-                    myListModel.append({"titleText": title_data[i] })
+                var data_container = Myscript.dbReadAll()
+                for(var i = 0; i < Myscript.dbReadAll().length;i++) {
+                    myListModel.append({"titleText": data_container[i]} )
                 }
 
             }
