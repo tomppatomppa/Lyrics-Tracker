@@ -2,7 +2,20 @@ function clearDrawer() {
     addSong_Drawer.titleString = ""
     addSong_Drawer.lyricString = ""
 }
+function toggleSetList() {
+    if(set_List_Drawer.visible == false) {
+        console.log("open")
+        set_List_Drawer.visible = true
 
+    }
+    else {
+        console.log("close")
+        set_List_Drawer.popup.close()
+        set_List_Drawer.visible = false
+
+
+    }
+}
 
 
 function getDatabase() {

@@ -7,8 +7,8 @@ import "javascript.js" as Myscript
 
 
 ComboBox {
-    anchors.left: parent.left
-    anchors.verticalCenter: parent.verticalCenter
+    id: set_List_Drawer
+
 
 }
 

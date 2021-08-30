@@ -104,17 +104,52 @@ Item {
                         console.log("Open drawer button")
                     }
                 }
-                Set_List_Drawer {
-                    id: set_List_Drawer
-
-
-
-                }
-                Menu_Icon {
-                    id: addNewSetlistBtn
-                    anchors.left: set_List_Drawer.right
+                Button {
+                    id: setlistBtn
+                    Material.background: Material.BlueGrey
+                    anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
+                    text: "Setlists"
+                    anchors.leftMargin: 5
+                    anchors.bottomMargin: 0
+                    implicitWidth: parent.width/4
+                    onClicked: {
+                        Myscript.toggleSetList()
+
+
+
+
+                    }
+                    Set_List_Drawer {
+                        id: set_List_Drawer
+                        visible: false
+                        anchors.top: setlistBtn.bottom
+                        anchors.horizontalCenter: setlistBtn.horizontalCenter
+                        anchors.topMargin: 0
+                        width: parent.width
+
+                    }
+
+
                 }
+                Button {
+                    id: addSetListBtn
+                    Material.background: Material.BlueGrey
+                    anchors.left: setlistBtn.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "New Setlist"
+                    anchors.leftMargin: 5
+                    anchors.bottomMargin: 0
+                    implicitWidth: parent.width/4
+                    onClicked: {
+                        console.log("add setlist")
+                    }
+                }
+//                Menu_Icon {
+//                    id: addNewSetlistBtn
+//                    anchors.left: set_List_Drawer.right
+//                    anchors.verticalCenter: parent.verticalCenter
+//                }
 
 //                Set_List_Drawer {
 //                    anchors.left: parent.left
