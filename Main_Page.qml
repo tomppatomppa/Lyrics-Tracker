@@ -50,6 +50,7 @@ Item {
                     addSong_Drawer.lyricString = lyrics_data
                     //Myscript.setMenuBtnState()
                     addSong_Drawer.open()
+
                 }
 
                 Rectangle {
@@ -69,12 +70,17 @@ Item {
                     color: "white"
                 }
             }
+
             Component.onCompleted: {
                 myListModel.clear()
                 var data_container = Myscript.dbReadAll()
                 for(var i = 0; i < Myscript.dbReadAll().length;i++) {
                     myListModel.append({"titleText": data_container[i]} )
                 }
+//                if(addSong_Drawer.closed) {
+//                    addSong_Drawer.titleString = ""
+//                    addSong_Drawer.lyricString = ""
+//                }
             }
 
 

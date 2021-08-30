@@ -8,7 +8,7 @@ Drawer {
     property int itemIndex: 0
     property string titleString: ""
     property string lyricString: ""
-    property bool is_open: false
+
 
     id: addSong_Drawer
     width: parent.width
@@ -36,8 +36,8 @@ Drawer {
             text: "Paste"
             onClicked: {
                 console.log("paste")
-                console.log(is_open)
-                //titleInput.append(titleInput.paste())
+                console.log(titleString+" " + lyricString)
+
             }
         }
 
@@ -49,11 +49,10 @@ Drawer {
             onClicked: {
                 //findInDrawer(itemIndex, "random")
                 if(titleInput.text != "") {
-                        Myscript.storeData(songName.text, titleInput.text)
-                    titleInput.clear()
-                    lyricInput.clear()
+                        Myscript.dbInsert(titleInput.text, lyricInput.text)
+                    titleString = ""
+                    lyricString = ""
                     addSong_Drawer.close()
-
                 }
                 else {
                     console.log("Enter title")
@@ -92,6 +91,8 @@ Drawer {
             id: lyricInput
             width: parent.width
             horizontalAlignment: TextEdit.AlignHCenter
+
+            placeholderText: "Input lyrics"
             text: lyricString
             textMargin: 50
             font.pointSize: 20
@@ -100,6 +101,11 @@ Drawer {
         }
     }
 
+    //when drawer is closed
+    onClosed: {
+        titleString = ""
+        lyricString = ""
+    }
 
 
 }

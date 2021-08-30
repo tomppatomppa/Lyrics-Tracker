@@ -1,15 +1,6 @@
 
 
-function setMenuBtnState() {
-    if(addSong_Drawer.is_open ==false) {
-        addSong_Drawer.is_open = true
-        console.log("open")
-    }
-    else {
-        addSong_Drawer.is_open = false
-        console.log("close")
-    }
-}
+
 
 function getDatabase() {
    return LocalStorage.openDatabaseSync("local", "1.0", "Lyric Data", 1000000);
