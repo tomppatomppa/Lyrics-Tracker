@@ -143,6 +143,7 @@ Item {
                     implicitWidth: parent.width/4
                     onClicked: {
                         console.log("add setlist")
+                        popup.open()
                     }
                 }
 //                Menu_Icon {
@@ -194,6 +195,9 @@ Item {
 
     AddSong_Drawer {
         id: addSong_Drawer
+    }
+    Setlist_Popup_Menu {
+        id: popup
     }
 
 }

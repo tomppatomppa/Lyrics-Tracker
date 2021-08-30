@@ -3,7 +3,7 @@ function clearDrawer() {
     addSong_Drawer.lyricString = ""
 }
 function toggleSetList() {
-    if(set_List_Drawer.visible == false) {
+    if(set_List_Drawer.visible === false) {
         console.log("open")
         set_List_Drawer.visible = true
 
