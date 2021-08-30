@@ -9,24 +9,21 @@ Drawer {
     property string titleString: ""
     property string lyricString: ""
 
-
     id: addSong_Drawer
     width: parent.width
     height: parent.height-menuBarHeight
     edge: Qt.BottomEdge
+
     background: Rectangle {
         anchors.fill: parent
         color: "#2C5E50"
     }
-
     Rectangle {
         id: btnContainer
         height: parent.height
         width: 50
         anchors.right: parent.right
-
         color: "red"
-
         RoundButton {
             id: pasteBtn
             anchors.left: parent.TopLeft
@@ -37,33 +34,25 @@ Drawer {
             onClicked: {
                 console.log("paste")
                 console.log(titleString+" " + lyricString)
-
             }
         }
-
         RoundButton {
             id: saveBtn
             anchors.top: pasteBtn.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Save"
             onClicked: {
-                //findInDrawer(itemIndex, "random")
                 if(titleInput.text != "") {
-                        Myscript.dbInsert(titleInput.text, lyricInput.text)
-                    titleString = ""
-                    lyricString = ""
+                    Myscript.dbInsert(titleInput.text, lyricInput.text)
+                    Myscript.clearDrawer()
+                    updateListView()
                     addSong_Drawer.close()
                 }
                 else {
                     console.log("Enter title")
                 }
-
             }
-
         }
-
-
-
     }
     /***title Text***/
     Rectangle {
@@ -101,12 +90,10 @@ Drawer {
         }
     }
 
+
     //when drawer is closed
     onClosed: {
-        titleString = ""
-        lyricString = ""
+        Myscript.clearDrawer()
     }
-
-
 }
 

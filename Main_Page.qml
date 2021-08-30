@@ -72,11 +72,7 @@ Item {
             }
 
             Component.onCompleted: {
-                myListModel.clear()
-                var data_container = Myscript.dbReadAll()
-                for(var i = 0; i < Myscript.dbReadAll().length;i++) {
-                    myListModel.append({"titleText": data_container[i]} )
-                }
+                    updateListView()
 //                if(addSong_Drawer.closed) {
 //                    addSong_Drawer.titleString = ""
 //                    addSong_Drawer.lyricString = ""
@@ -104,15 +100,28 @@ Item {
                         anchors.centerIn: parent
                     }
                     onClicked:  {
-                        if (addSong_Drawer.is_open == false) {
-                            addSong_Drawer.is_open == true
-                            console.log("open")
-                        }
-
                         addSong_Drawer.open()
                         console.log("Open drawer button")
+                    }
                 }
-            }
+                Set_List_Drawer {
+                    id: set_List_Drawer
+
+
+
+                }
+                Menu_Icon {
+                    id: addNewSetlistBtn
+                    anchors.left: set_List_Drawer.right
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+//                Set_List_Drawer {
+//                    anchors.left: parent.left
+//                    anchors.verticalCenter: menuBar.verticalCenter
+//                }
+
+
 //                RoundButton {
 //                    id:addData
 //                    text: databutton
@@ -139,10 +148,18 @@ Item {
         }
     }
 
+    function updateListView() {
+        myListModel.clear()
+        var data_container = Myscript.dbReadAll()
+        for(var i = 0; i < Myscript.dbReadAll().length;i++) {
+            myListModel.append({"titleText": data_container[i]} )
+        }
 
+    }
 
     AddSong_Drawer {
         id: addSong_Drawer
     }
+
 }
 

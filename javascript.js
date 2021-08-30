@@ -1,9 +1,13 @@
-
+function clearDrawer() {
+    addSong_Drawer.titleString = ""
+    addSong_Drawer.lyricString = ""
+}
 
 
 
 function getDatabase() {
    return LocalStorage.openDatabaseSync("local", "1.0", "Lyric Data", 1000000);
+
 }
 
 function initDatabase() {
