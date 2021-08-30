@@ -44,10 +44,12 @@ Item {
 
                 onClicked: {
                     listView.currentIndex = index
-
                     var title_data = myListModel.get(listView.currentIndex).titleText
+                    var lyrics_data = Myscript.getLyricsData(title_data)
+                    addSong_Drawer.titleString = title_data
+                    addSong_Drawer.lyricString = lyrics_data
+                    //Myscript.setMenuBtnState()
                     addSong_Drawer.open()
-
                 }
 
                 Rectangle {
@@ -68,11 +70,11 @@ Item {
                 }
             }
             Component.onCompleted: {
+                myListModel.clear()
                 var data_container = Myscript.dbReadAll()
                 for(var i = 0; i < Myscript.dbReadAll().length;i++) {
                     myListModel.append({"titleText": data_container[i]} )
                 }
-
             }
 
 
@@ -96,6 +98,10 @@ Item {
                         anchors.centerIn: parent
                     }
                     onClicked:  {
+                        if (addSong_Drawer.is_open == false) {
+                            addSong_Drawer.is_open == true
+                            console.log("open")
+                        }
 
                         addSong_Drawer.open()
                         console.log("Open drawer button")

@@ -1,6 +1,15 @@
 
 
-
+function setMenuBtnState() {
+    if(addSong_Drawer.is_open ==false) {
+        addSong_Drawer.is_open = true
+        console.log("open")
+    }
+    else {
+        addSong_Drawer.is_open = false
+        console.log("close")
+    }
+}
 
 function getDatabase() {
    return LocalStorage.openDatabaseSync("local", "1.0", "Lyric Data", 1000000);
@@ -43,7 +52,7 @@ function dbInsert(titleData, LyricData) {
 //    rowid = result.insertId
     return rowid
 }
-
+//Adds all songs to MyListView
 function dbReadAll()
 {
     var db = getDatabase()
@@ -53,26 +62,25 @@ function dbReadAll()
                     'SELECT param_title,param_lyrics FROM song_data')
         for (var i = 0; i < results.rows.length; i++) {
             songlist_data.push(results.rows.item(i).param_title)
-            console.log(results.rows.item(i).param_title," : ",
-                        results.rows.item(i).param_lyrics)
+            //console.log(results.rows.item(i).param_title," : ",
+                        //results.rows.item(i).param_lyrics)
         }
     })
     return songlist_data
 }
-function readData(title) {
+function getLyricsData(title) {
     var db = getDatabase()
     var rs = ""
     print('readData()')
     if(!db) { return; }
     db.transaction( function(tx) {
         print('read '+title)
-        rs = tx.executeSql('SELECT param_title FROM data WHERE param_title=?;', [title]);
-
+        rs = tx.executeSql('SELECT param_lyrics FROM song_data WHERE param_title=?;', [title]);
     });
 
     if(rs.rows.length > 0) {
         console.log(title +" exists ")
-        return rs.rows.item(0).param_title
+        return rs.rows.item(0).param_lyrics
     }
     else {
         console.log(title +" does not exist ")

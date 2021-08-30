@@ -2,11 +2,13 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 import QtQuick.LocalStorage 2.12
 import "javascript.js" as Myscript
+
 Drawer {
     property real menuBarHeight: 50
     property int itemIndex: 0
     property string titleString: ""
-
+    property string lyricString: ""
+    property bool is_open: false
 
     id: addSong_Drawer
     width: parent.width
@@ -34,6 +36,7 @@ Drawer {
             text: "Paste"
             onClicked: {
                 console.log("paste")
+                console.log(is_open)
                 //titleInput.append(titleInput.paste())
             }
         }
@@ -73,9 +76,9 @@ Drawer {
         TextField {
             id: titleInput
             maximumLength: 30
-
             anchors.centerIn: parent.horizontalCenter
             placeholderText: "title"
+            text: titleString
         }
     }
     //Where lyric text goes
@@ -89,11 +92,15 @@ Drawer {
             id: lyricInput
             width: parent.width
             horizontalAlignment: TextEdit.AlignHCenter
+            text: lyricString
             textMargin: 50
             font.pointSize: 20
             wrapMode: TextArea.Wrap
             selectByMouse : true
         }
     }
+
+
+
 }
 
