@@ -99,9 +99,15 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_qml.cpp
 debug/qrc_qml.cpp: qml.qrc \
 		C:/Qt/6.1.2/mingw81_64/bin/rcc.exe \
-		main.qml \
 		Main_Page.qml \
 		Load_page.qml \
+		Set_List_Drawer.qml \
+		Setlist_Popup_Menu.qml \
+		AddSong_Drawer.qml \
+		main.qml \
+		Menu_Icon.qml \
+		javascript.js \
+		MyListModel.qml \
 		assets/feo_logo2.png
 	C:\Qt\6.1.2\mingw81_64\bin\rcc.exe -name qml qml.qrc -o debug\qrc_qml.cpp
 

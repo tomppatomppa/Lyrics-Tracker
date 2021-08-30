@@ -4,5 +4,11 @@
         <file>assets/feo_logo2.png</file>
         <file>Load_page.qml</file>
         <file>Main_Page.qml</file>
+        <file>Menu_Icon.qml</file>
+        <file>AddSong_Drawer.qml</file>
+        <file>javascript.js</file>
+        <file>MyListModel.qml</file>
+        <file>Set_List_Drawer.qml</file>
+        <file>Setlist_Popup_Menu.qml</file>
     </qresource>
 </RCC>
