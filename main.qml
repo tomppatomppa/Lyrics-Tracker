@@ -3,6 +3,7 @@ import QtQuick.LocalStorage 2.12
 import QtQuick.Controls 2.5
 
 import "javascript.js" as Myscript
+import "spotify_playlist.js" as S
 ApplicationWindow {
 
         property var db;

@@ -12,18 +12,12 @@ Popup {
     height: 150
     modal: true
     focus: true
-
-
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
     background:   Rectangle {
         id: bgPopup
         anchors.margins: 0
         anchors.fill: parent
         color: "#2C3E50"
-
-
-
-
     }
     Rectangle {
         width: parent.width; height: parent.height
@@ -51,7 +45,6 @@ Popup {
                         popup.close()
                     }
                 }
-
                 Button {
                     text: "Cancel"
                     Layout.fillWidth: true
@@ -62,7 +55,5 @@ Popup {
             }
         }
     }
-
-
 }
 

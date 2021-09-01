@@ -16,14 +16,14 @@ Drawer {
 
     background: Rectangle {
         anchors.fill: parent
-        color: "#2C5E50"
+        color: "#000"
     }
     Rectangle {
         id: btnContainer
         height: parent.height
         width: 50
         anchors.right: parent.right
-        color: "red"
+        color: "#2C3E50"
         RoundButton {
             id: pasteBtn
             anchors.left: parent.TopLeft
@@ -53,6 +53,7 @@ Drawer {
                 }
             }
         }
+
     }
     /***title Text***/
     Rectangle {
@@ -60,7 +61,7 @@ Drawer {
         width: parent.width-50
         height: 35
         anchors.top: parent.top
-        color: "blue"
+        color: "#2C3E50"
         TextField {
             id: titleInput
             maximumLength: 30

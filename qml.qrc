@@ -10,5 +10,6 @@
         <file>MyListModel.qml</file>
         <file>Set_List_Drawer.qml</file>
         <file>Setlist_Popup_Menu.qml</file>
+        <file>spotify_playlist.js</file>
     </qresource>
 </RCC>

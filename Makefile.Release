@@ -103,6 +103,7 @@ release/qrc_qml.cpp: qml.qrc \
 		Load_page.qml \
 		Set_List_Drawer.qml \
 		Setlist_Popup_Menu.qml \
+		spotify_playlist.js \
 		AddSong_Drawer.qml \
 		main.qml \
 		Menu_Icon.qml \
