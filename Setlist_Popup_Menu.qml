@@ -6,8 +6,6 @@ import "javascript.js" as Myscript
 Popup {
     id: popup
     anchors.centerIn: parent
-//    x: 100
-//    y: 100
     width: 200
     height: 150
     modal: true
@@ -31,7 +29,12 @@ Popup {
 
             TextField {
                 id: setlistInput
-                placeholderText: qsTr("Setlist Name")
+                placeholderText: if(loadSpotifyBtn.checked) {
+                                     qsTr("Spotify Playlist ID")
+                                 }else {
+                                     qsTr("Setlist Name")
+                                 }
+
                 Layout.fillWidth: true
                 focus: true
             }

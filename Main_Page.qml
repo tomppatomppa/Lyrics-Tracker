@@ -24,6 +24,7 @@ Item {
             }
             model: ListModel {
                 id: myListModel
+                property int indexValue;
             }
             delegate: MouseArea {
                 id: myDelegate
@@ -32,8 +33,9 @@ Item {
 
                 onPressAndHold: {
                     listView.currentIndex = index
-                    addSong_Drawer.itemIndex = listView.currentIndex
-                    myListModel.remove(listView.currentIndex)
+                    warningPopup.removeIndex = listView.currentIndex
+                    //addSong_Drawer.itemIndex = listView.currentIndex
+                    //myListModel.remove(listView.currentIndex)
                     warningPopup.open()
 
 
@@ -158,51 +160,9 @@ Item {
                     anchors.bottomMargin: 0
                     implicitWidth: parent.width/4
                     onClicked: {
-
-                        console.log(loadSpotifyBtn.checked)
-                        var stringtext = popup.open()
-                        console.log(stringtext)
-
-
-//                        for(var i in Myscript.getSpotifyTitle()) {
-//                            console.log(i)
-//                        }
+                        popup.open()
                     }
                 }
-//                Menu_Icon {
-//                    id: addNewSetlistBtn
-//                    anchors.left: set_List_Drawer.right
-//                    anchors.verticalCenter: parent.verticalCenter
-//                }
-
-//                Set_List_Drawer {
-//                    anchors.left: parent.left
-//                    anchors.verticalCenter: menuBar.verticalCenter
-//                }
-
-
-//                RoundButton {
-//                    id:addData
-//                    text: databutton
-
-//                    anchors.centerIn: parent
-//                    onClicked: {
-//                        myListModel.clear()
-//                        console.log("component")
-//                        var data_container = [Myscript.readAllData()]
-//                        var data_size = data_container.length
-//                        if(!data_size) {
-//                            console.log("empty database")
-//                            return
-//                        }
-//                        else {
-//                            for(var i = 0; i < data_size;i++ ) {
-//                                console.log("Add do listview "+data_container[i])
-//                                myListModel.append({"titleText": data_container[i], "lyricText": "default" })
-//                            }
-//                        }
-//                    }
-//                }
             }
         }
     }

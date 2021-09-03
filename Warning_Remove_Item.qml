@@ -4,6 +4,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import "javascript.js" as Myscript
 Popup {
+    property int removeIndex;
     id: warningPopup
     anchors.centerIn: parent
     width: 200
@@ -16,6 +17,7 @@ Popup {
         width: parent.width;
         height: parent.height;
         color: "red"
+
         ColumnLayout {
 
             width: parent.width-20
@@ -29,6 +31,7 @@ Popup {
             text: "Attention! \n The following action will permanently remove selected data"
             wrapMode: "WordWrap"
             anchors.centerIn: parent
+
         }
 
         RowLayout {
@@ -39,10 +42,17 @@ Popup {
             Button {
                 text: "Accept"
                 Layout.fillWidth: true
+                onClicked: {
+                    myListModel.remove(removeIndex)
+                    warningPopup.close()
+                }
             }
             Button {
                 text: "Cancel"
                 Layout.fillWidth: true
+                onClicked: {
+                    warningPopup.close()
+                }
             }
         }
     }
