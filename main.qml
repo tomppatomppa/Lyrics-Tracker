@@ -25,7 +25,7 @@ ApplicationWindow {
            Myscript.dbInsert("I want it that way", "Lorem Ipsum")
            Myscript.dbInsert("Dont stop me now", "Lorum Ipsum")
            Myscript.dbInsert("I want it that way", "New text")
-            Myscript.testCondition()
+
 
            contentFrame.replace("qrc:/Main_Page.qml")
 

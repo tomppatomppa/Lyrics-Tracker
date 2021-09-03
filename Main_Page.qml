@@ -145,6 +145,27 @@ Item {
                     onClicked: {
                         console.log("add setlist")
                         popup.open()
+
+                    }
+                }
+                Button {
+                    checkable: true
+                    id: loadSpotifyBtn
+                    Material.background: Material.BlueGrey
+                    anchors.left: addSetListBtn.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "Spotify"
+                    anchors.leftMargin: 5
+                    anchors.bottomMargin: 0
+                    implicitWidth: parent.width/4
+                    onClicked: {
+
+                        console.log(loadSpotifyBtn.checked)
+                        popup.open()
+
+//                        for(var i in Myscript.getSpotifyTitle()) {
+//                            console.log(i)
+//                        }
                     }
                 }
 //                Menu_Icon {

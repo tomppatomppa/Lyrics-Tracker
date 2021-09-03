@@ -38,9 +38,20 @@ Popup {
                     text: "Ok"
                     Layout.fillWidth: true
                     onClicked: {
+
                         if(setlistInput.text !== "") {
                             console.log("something")
+                            if(loadSpotifyBtn.checked) {
+                                console.log("spotify")
+
+                                loadSpotifyBtn.checked=false
+                            }
+                            else {
+                                console.log("add setlist name")
+                            }
+
                         }
+
                         setlistInput.text = ""
                         popup.close()
                     }

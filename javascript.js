@@ -16,62 +16,28 @@ function toggleSetList() {
 
     }
 }
-function testCondition() {
+function getSpotifyTitle() {
     var request = new XMLHttpRequest()
-
+    var titleData = [];
     request.open('GET','https://v1.nocodeapi.com/tomppatomppa/spotify/zOdBqUajPOpvWPRt/playlists?id=3A8datEFOHoOS2DxoQn7L9')
     request.onreadystatechange = function() {
         if(request.readyState === XMLHttpRequest.DONE) {
 
             if(request.status && request.status === 200) {
-               // console.log("response", request.responseText)
-
-
+               // console.log("response", request.responseText) <<whole response text<<
                 var result = JSON.parse(request.responseText)
                 var playlistName = result.name
                 //console.log("playlist: "+ playlistName)
                 var songCount = result.tracks.total
-
                 //console.log(result.tracks.items[5].track.album.artists[0].external_urls.spotify)
                 for(var song = 0; song < songCount; song++) {
                     for(var i in result.tracks.items[song].track) {
                         if(i === "name") {
+                            titleData.push(result.tracks.items[song].track[i])
                             console.log(result.tracks.items[song].track[i])
                         }
-
-
-
-
-
                     }
-
                 }
-
-
-
-                //var tracks = result.track
-                //console.log(tracks)
-//               for(var p in result) {
-//                   for(var k in result[p]) {
-//                       if(p === "tracks") {
-//                           for(var tr in result[p]){
-//                               console.log(tr)
-//                           }
-
-//                           //console.log(result[p])
-
-
-//                           //console.log(p)
-//                       }
-
-//                      // console.log(p+ ": "+ result[p][k])
-//                   }
-//                }
-
-//                var track = result.name
-//                console.log(track + result.length())
-
-
             } else {
                 console.log("HTTP:", request.status, request.statusText)
             }
@@ -80,35 +46,9 @@ function testCondition() {
 
     }
      request.send()
+    return titleData
 }
 
-function getCondition(location, index) {
-    var res
-    var url = 'https://jsonplaceholder.typicode.com/todos/1'
-    var doc = new XMLHttpRequest()
-
-    doc.onreadystatechange = function() {
-        if (doc.readyState == XMLHttpRequest.DONE) {
-            res = doc.responseText
-
-            //parse data
-            var obj = JSON.parse(res)
-            if (typeof(obj) == 'object') {
-                console.log("sds");
-                if (obj.hasOwnProperty('completed')) {
-                    console.log("here");
-                    var ch = obj.query.results.channel
-
-                    //var item = ch.item
-                    //codeList[index] = item.condition["code"]
-
-                }
-            }
-        }
-    }
-    doc.open('GET', url, true)
-    doc.send()
-}
 
 
 
