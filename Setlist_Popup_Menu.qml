@@ -2,7 +2,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.5
 
 import QtQuick.Layouts 1.3
-
+import "javascript.js" as Myscript
 Popup {
     id: popup
     anchors.centerIn: parent
@@ -34,32 +34,48 @@ Popup {
                 focus: true
             }
             RowLayout {
-                Button {
+                DelayButton {
+
+
                     text: "Ok"
                     Layout.fillWidth: true
+                    delay: 2000
                     onClicked: {
-
                         if(setlistInput.text !== "") {
                             console.log("something")
                             if(loadSpotifyBtn.checked) {
                                 console.log("spotify")
 
                                 loadSpotifyBtn.checked=false
+
+                                Myscript.getSpotifyTitle()
+
+
                             }
                             else {
                                 console.log("add setlist name")
                             }
-
                         }
 
+
+
+                    }
+                    onActivated: {
+                        Myscript.updateListView()
+                        console.log("here")
                         setlistInput.text = ""
                         popup.close()
                     }
+
                 }
+
+
+
                 Button {
                     text: "Cancel"
                     Layout.fillWidth: true
                     onClicked: {
+                        loadSpotifyBtn.checked=false
                         popup.close()
                     }
                 }

@@ -16,10 +16,18 @@ function toggleSetList() {
 
     }
 }
+function updateListView() {
+    myListModel.clear()
+    var data_container = Myscript.dbReadAll()
+    for(var i = 0; i < Myscript.dbReadAll().length;i++) {
+        myListModel.append({"titleText": data_container[i]} )
+    }
+
+}
 function getSpotifyTitle() {
     var request = new XMLHttpRequest()
     var titleData = [];
-    request.open('GET','https://v1.nocodeapi.com/tomppatomppa/spotify/zOdBqUajPOpvWPRt/playlists?id=3A8datEFOHoOS2DxoQn7L9')
+    request.open('GET','https://v1.nocodeapi.com/tomppatomppa/spotify/zOdBqUajPOpvWPRt/playlists?id=6gjCck0cfev3snqk5QFVOF')
     request.onreadystatechange = function() {
         if(request.readyState === XMLHttpRequest.DONE) {
 
@@ -34,6 +42,7 @@ function getSpotifyTitle() {
                     for(var i in result.tracks.items[song].track) {
                         if(i === "name") {
                             titleData.push(result.tracks.items[song].track[i])
+                            dbInsert(result.tracks.items[song].track[i], "test lyrics")
                             console.log(result.tracks.items[song].track[i])
                         }
                     }
@@ -46,10 +55,22 @@ function getSpotifyTitle() {
 
     }
      request.send()
-    return titleData
+    for (var k in titleData) {
+        dbInsert(k, "sample lyric")
+    }
+
+    //updateListView()
+
+    //return titleData
 }
 
+//function delay(delayTime, cb) {
+//    timer.interval = delayTime;
+//    timer.repeat = false;
+//    timer.triggered.connect(cb);
+//    timer.start();
 
+//}
 
 
 function getDatabase() {

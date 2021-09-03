@@ -73,7 +73,7 @@ Item {
             }
 
             Component.onCompleted: {
-                    updateListView()
+                    Myscript.updateListView()
 //                if(addSong_Drawer.closed) {
 //                    addSong_Drawer.titleString = ""
 //                    addSong_Drawer.lyricString = ""
@@ -161,7 +161,9 @@ Item {
                     onClicked: {
 
                         console.log(loadSpotifyBtn.checked)
-                        popup.open()
+                        var stringtext = popup.open()
+                        console.log(stringtext)
+
 
 //                        for(var i in Myscript.getSpotifyTitle()) {
 //                            console.log(i)
@@ -206,14 +208,7 @@ Item {
         }
     }
 
-    function updateListView() {
-        myListModel.clear()
-        var data_container = Myscript.dbReadAll()
-        for(var i = 0; i < Myscript.dbReadAll().length;i++) {
-            myListModel.append({"titleText": data_container[i]} )
-        }
 
-    }
 
     AddSong_Drawer {
         id: addSong_Drawer

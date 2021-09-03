@@ -45,7 +45,7 @@ Drawer {
                 if(titleInput.text != "") {
                     Myscript.dbInsert(titleInput.text, lyricInput.text)
                     Myscript.clearDrawer()
-                    updateListView()
+                    Myscript.updateListView()
                     addSong_Drawer.close()
                 }
                 else {

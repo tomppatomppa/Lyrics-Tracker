@@ -18,14 +18,18 @@ ApplicationWindow {
 
             anchors.fill: parent
             initialItem: Qt.resolvedUrl("qrc:/Load_page.qml")
+
+
+
        }
        Component.onCompleted: {
+            DelayButton
 
            Myscript.initDatabase()
-           Myscript.dbInsert("I want it that way", "Lorem Ipsum")
-           Myscript.dbInsert("Dont stop me now", "Lorum Ipsum")
-           Myscript.dbInsert("I want it that way", "New text")
-
+//           Myscript.dbInsert("I want it that way", "Lorem Ipsum")
+//           Myscript.dbInsert("Dont stop me now", "Lorum Ipsum")
+//           Myscript.dbInsert("I want it that way", "New text")
+//            Myscript.dbInsert("testing", "its")
 
            contentFrame.replace("qrc:/Main_Page.qml")
 
@@ -37,14 +41,14 @@ ApplicationWindow {
 
 
 }
+//Timer {
+//            id: timer
+//        }
 
-//            Timer {
-//                        id: timer
-//                    }
+//        function delay(delayTime, cb) {
+//            timer.interval = delayTime;
+//            timer.repeat = false;
+//            timer.triggered.connect(cb);
+//            timer.start();
+//        }
 
-//                    function delay(delayTime, cb) {
-//                        timer.interval = delayTime;
-//                        timer.repeat = false;
-//                        timer.triggered.connect(cb);
-//                        timer.start();
-//                    }
