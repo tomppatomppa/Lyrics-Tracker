@@ -12,8 +12,6 @@ function toggleSetList() {
         console.log("close")
         set_List_Drawer.popup.close()
         set_List_Drawer.visible = false
-
-
     }
 }
 function updateListView() {
@@ -27,10 +25,9 @@ function updateListView() {
 function getSpotifyTitle() {
     var request = new XMLHttpRequest()
     var titleData = [];
-    request.open('GET','https://v1.nocodeapi.com/tomppatomppa/spotify/zOdBqUajPOpvWPRt/playlists?id=6gjCck0cfev3snqk5QFVOF')
+    request.open('GET','https://v1.nocodeapi.com/tomppatomppa/spotify/zOdBqUajPOpvWPRt/playlists?id=3hAWaFV99srMAEJnLk6rFa')
     request.onreadystatechange = function() {
         if(request.readyState === XMLHttpRequest.DONE) {
-
             if(request.status && request.status === 200) {
                // console.log("response", request.responseText) <<whole response text<<
                 var result = JSON.parse(request.responseText)
@@ -41,36 +38,24 @@ function getSpotifyTitle() {
                 for(var song = 0; song < songCount; song++) {
                     for(var i in result.tracks.items[song].track) {
                         if(i === "name") {
-                            titleData.push(result.tracks.items[song].track[i])
+                            //titleData.push(result.tracks.items[song].track[i])
                             dbInsert(result.tracks.items[song].track[i], "test lyrics")
                             console.log(result.tracks.items[song].track[i])
                         }
                     }
                 }
             } else {
+
                 console.log("HTTP:", request.status, request.statusText)
             }
-
         }
-
-    }
-     request.send()
-    for (var k in titleData) {
-        dbInsert(k, "sample lyric")
     }
 
-    //updateListView()
-
-    //return titleData
+    request.send()
+    updateListView()
 }
 
-//function delay(delayTime, cb) {
-//    timer.interval = delayTime;
-//    timer.repeat = false;
-//    timer.triggered.connect(cb);
-//    timer.start();
 
-//}
 
 
 function getDatabase() {
@@ -81,6 +66,7 @@ function getDatabase() {
 function initDatabase() {
 
     db = LocalStorage.openDatabaseSync("local", "1.0", "Lyric Data", 100000);
+
     try {
             db.transaction( function(tx) {
             print('... create table')
@@ -99,12 +85,12 @@ function dbInsert(titleData, LyricData) {
         rx = tx.executeSql('SELECT param_title FROM song_data WHERE param_title=?', [titleData])
 
         if(rx.rows.length > 0) {
-            console.log("title exists")
+            //console.log("title exists")
             tx.executeSql('UPDATE song_data SET param_title=? WHERE param_title=?;', [titleData, titleData])
             tx.executeSql('UPDATE song_data SET param_lyrics=? WHERE param_title=?;', [LyricData, titleData])
         }
         else {
-            console.log("new title")
+            //console.log("new title")
              tx.executeSql('INSERT INTO song_data VALUES(?,?)', [titleData, LyricData])
         }
 

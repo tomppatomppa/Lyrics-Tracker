@@ -27,20 +27,19 @@ Item {
             }
             delegate: MouseArea {
                 id: myDelegate
-                width: parent.width
+                width: bgRec.width
                 height: 30
 
-//                onPressAndHold: {
-//                    listView.currentIndex = index
-//                    addSong_Drawer.itemIndex = listView.currentIndex
-//                    var title_data = myListModel.get(listView.currentIndex).titleText
-//                    var lyrics_data = Myscript.readData(title_data)
-//                    addSong_Drawer.titleString = title_data
-//                    if(lyrics_data) {
-//                        addSong_Drawer.lyricString = lyrics_data
-//                    }
-//                    addSong_Drawer.open()
-//                }
+                onPressAndHold: {
+                    listView.currentIndex = index
+                    addSong_Drawer.itemIndex = listView.currentIndex
+                    myListModel.remove(listView.currentIndex)
+                    warningPopup.open()
+
+
+
+
+                }
 
                 onClicked: {
                     listView.currentIndex = index
@@ -215,6 +214,9 @@ Item {
     }
     Setlist_Popup_Menu {
         id: popup
+    }
+    Warning_Remove_Item {
+        id: warningPopup
     }
 
 }

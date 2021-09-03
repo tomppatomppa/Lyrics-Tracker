@@ -107,6 +107,7 @@ release/qrc_qml.cpp: qml.qrc \
 		AddSong_Drawer.qml \
 		main.qml \
 		Menu_Icon.qml \
+		Warning_Remove_Item.qml \
 		javascript.js \
 		MyListModel.qml \
 		assets/feo_logo2.png
@@ -251,7 +252,20 @@ release/main.o: main.cpp C:/Qt/6.1.2/mingw81_64/include/QtGui/QGuiApplication \
 		C:/Qt/6.1.2/mingw81_64/include/QtCore/qversionnumber.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtCore/qmetaobject.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtQml/qqmlerror.h \
-		C:/Qt/6.1.2/mingw81_64/include/QtQml/qqmlabstracturlinterceptor.h
+		C:/Qt/6.1.2/mingw81_64/include/QtQml/qqmlabstracturlinterceptor.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/QStandardPaths \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qstandardpaths.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/QFile \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qiodevice.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/QDir \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/QCryptographicHash \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qcryptographichash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o main.cpp
 
 release/qrc_qml.o: release/qrc_qml.cpp 

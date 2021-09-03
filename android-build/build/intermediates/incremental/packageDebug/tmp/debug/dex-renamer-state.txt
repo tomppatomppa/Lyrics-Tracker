@@ -1,4 +1,4 @@
-#Mon Aug 30 11:32:00 EEST 2021
+#Fri Sep 03 13:58:26 EEST 2021
 base.1=C\:\\Users\\tomiw\\Documents\\Qt_projects\\set_list_tracker\\android-build\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex
 path.1=classes.dex
 base.0=C\:\\Users\\tomiw\\Documents\\Qt_projects\\set_list_tracker\\android-build\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex

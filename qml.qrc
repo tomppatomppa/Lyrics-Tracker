@@ -11,5 +11,6 @@
         <file>Set_List_Drawer.qml</file>
         <file>Setlist_Popup_Menu.qml</file>
         <file>spotify_playlist.js</file>
+        <file>Warning_Remove_Item.qml</file>
     </qresource>
 </RCC>

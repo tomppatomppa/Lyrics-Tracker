@@ -13,6 +13,9 @@ ApplicationWindow {
 
         title: "Setlist-Tracker"
 
+
+
+
        StackView {
             id: contentFrame
 
@@ -23,7 +26,7 @@ ApplicationWindow {
 
        }
        Component.onCompleted: {
-            DelayButton
+
 
            Myscript.initDatabase()
 //           Myscript.dbInsert("I want it that way", "Lorem Ipsum")

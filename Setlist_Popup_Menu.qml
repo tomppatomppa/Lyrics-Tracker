@@ -19,6 +19,8 @@ Popup {
         anchors.fill: parent
         color: "#2C3E50"
     }
+
+
     Rectangle {
         width: parent.width; height: parent.height
         color: "#425b75"
@@ -34,21 +36,26 @@ Popup {
                 focus: true
             }
             RowLayout {
-                DelayButton {
-
+                Button {
 
                     text: "Ok"
                     Layout.fillWidth: true
-                    delay: 2000
+                    //delay: 2000
+                    Timer {
+                        id: timer
+                    }
+
                     onClicked: {
                         if(setlistInput.text !== "") {
                             console.log("something")
                             if(loadSpotifyBtn.checked) {
                                 console.log("spotify")
-
                                 loadSpotifyBtn.checked=false
-
                                 Myscript.getSpotifyTitle()
+                                delayFunc(5000, function(){
+                                 console.log("asdasd")
+                                 Myscript.updateListView()
+                                })
 
 
                             }
@@ -56,21 +63,15 @@ Popup {
                                 console.log("add setlist name")
                             }
                         }
-
-
-
-                    }
-                    onActivated: {
-                        Myscript.updateListView()
-                        console.log("here")
+                        console.log("update")
                         setlistInput.text = ""
                         popup.close()
                     }
 
+
+
+
                 }
-
-
-
                 Button {
                     text: "Cancel"
                     Layout.fillWidth: true
@@ -79,8 +80,26 @@ Popup {
                         popup.close()
                     }
                 }
+
+
             }
         }
     }
+
+
+    function delayFunc(delayTime, cb) {
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
+    }
+//    Component.onCompleted: {
+//        delay(1000, function(){
+//            console.log("asdasd")
+
+//    });
+
+
 }
+
 
